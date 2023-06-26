@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 const path = require('path');
+const { VueLoaderPlugin } = require('vue-loader')
 module.exports = {
   entry: './src/index.js',
   devtool: 'source-map',
@@ -33,6 +34,10 @@ module.exports = {
       {
         test: /\.(woff | eot | ttf | otf | svg)$/,
         type: 'asset/resource',
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
     ],
   },
@@ -74,5 +79,6 @@ module.exports = {
         style: [],
       },
     }),
+    new VueLoaderPlugin(),
   ],
 };
